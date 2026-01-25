@@ -1,0 +1,29 @@
+{
+  "name": "tiny-url",
+  "version": "1.0.0",
+  "description": "A lightweight URL shortening service that transforms long URLs into concise, shareable links with analytics tracking",
+  "keywords": [
+    "url-shortner",
+    "tiny-url",
+    "link-shortner"
+  ],
+  "license": "ISC",
+  "author": "Kripal Shrestha",
+  "main": "app.js",
+  "scripts": {
+    "dev:api": "cd api && npm run dev",
+    "dev:web": "cd web && npm run dev",
+    "build:api": "cd api && npm run build",
+    "build:web": "cd web && npm run build",
+    "prisma:generate": "cd api && npm run prisma:generate",
+    "prisma:migrate": "cd api && npm run prisma:migrate"
+  },
+  "dependencies": {
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "@types/morgan": "^1.9.10"
+  }
+}

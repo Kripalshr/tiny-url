@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id              Int      @id @default(autoincrement())
+  firstName       String
+  lastName        String
+  username        String   @unique
+  email           String   @unique
+  isEmailVerified Boolean  @default(false)
+  password        String?
+  role            String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  urls            Url[]
+}
+
+model Url {
+  id         Int            @id @default(autoincrement())
+  userId     Int?
+  longUrl    String
+  shortUrl   String?        @unique
+  active     Boolean        @default(true)
+  expiresAt  DateTime?
+  clickCount Int            @default(0)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+  user       User?          @relation(fields: [userId], references: [id])
+  analytics  UrlAnalytics[]
+}
+
+model UrlAnalytics {
+  id        Int      @id @default(autoincrement())
+  urlId     Int
+  clickedAt DateTime @default(now())
+  userAgent String?
+  country   String?
+  region    String?
+  city      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  url       Url      @relation(fields: [urlId], references: [id])
+}

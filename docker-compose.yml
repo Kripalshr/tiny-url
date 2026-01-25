@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  server-1:
+    build: ./server
+    env_file:
+      - ./server/.env
+    networks:
+      - tinyurl_net
+    expose:
+      - "3000"
+
+  server-2:
+    build: ./server
+    env_file:
+      - ./server/.env
+    networks:
+      - tinyurl_net
+    expose:
+      - "3000"
+
+  server-3:
+    build: ./server
+    env_file:
+      - ./server/.env
+    networks:
+      - tinyurl_net
+    expose:
+      - "3000"
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - tinyurl_net
+
+networks:
+  tinyurl_net:
+    driver: bridge
