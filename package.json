@@ -11,12 +11,12 @@
   "author": "Kripal Shrestha",
   "main": "app.js",
   "scripts": {
-    "dev:api": "cd api && npm run dev",
+    "dev:api": "cd server && npm run dev",
     "dev:web": "cd web && npm run dev",
-    "build:api": "cd api && npm run build",
+    "build:api": "cd server && npm run build",
     "build:web": "cd web && npm run build",
-    "prisma:generate": "cd api && npm run prisma:generate",
-    "prisma:migrate": "cd api && npm run prisma:migrate"
+    "prisma:generate": "cd server && npm run prisma:generate",
+    "prisma:migrate": "cd server && npm run prisma:migrate"
   },
   "dependencies": {
     "express-rate-limit": "^8.2.1",

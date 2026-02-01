@@ -1,6 +1,7 @@
 import { ValidationError } from "../../utils/ValidationError";
 import { prisma } from "../../config/prisma";
 import { encode } from "../../utils/encode";
+import { redis } from "../../config/redis";
 
 export const createShortUrl = async (longUrl: string) => {
 
@@ -38,6 +39,9 @@ export const createShortUrl = async (longUrl: string) => {
             expiresAt: true
         }
     })
+
+    // Populate cache immediately
+    await redis.set(`url:${encodedId}`, JSON.stringify(shortUrl), "EX", 86400);
 
     return shortUrl;
 }

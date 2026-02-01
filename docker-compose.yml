@@ -9,6 +9,8 @@ services:
       - tinyurl_net
     expose:
       - "3000"
+    depends_on:
+      - redis
 
   server-2:
     build: ./server
@@ -18,6 +20,8 @@ services:
       - tinyurl_net
     expose:
       - "3000"
+    depends_on:
+      - redis
 
   server-3:
     build: ./server
@@ -27,6 +31,15 @@ services:
       - tinyurl_net
     expose:
       - "3000"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - tinyurl_net
 
   nginx:
     image: nginx:alpine
